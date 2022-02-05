@@ -1,1 +1,3 @@
-console.log('start');
+import { GraphQLServer } from 'graphql-yoga';
+
+console.log('OK');
