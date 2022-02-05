@@ -1,0 +1,19 @@
+{
+  "name": "letters-graphql",
+  "version": "1.0.0",
+  "description": "The back-end project of Letters",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goo-gy/letters-graphQL.git"
+  },
+  "author": "goo-gy",
+  "license": "ISC",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "nodemon": "^2.0.15"
+  }
+}
