@@ -1,3 +1,15 @@
-type Query {
+type User {
+  id: Int!
+  email: String!
   name: String!
+  token: String!
+}
+
+type Query {
+  user(id: Int!): User
+  users: [User]!
+}
+
+type Mutation {
+  signUp(email: String!, name: String!, password: String!): Boolean!
 }
