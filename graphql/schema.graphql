@@ -8,6 +8,7 @@ type User {
 type Query {
   user(id: Int!): User
   users: [User]!
+  signIn(email: String!, password: String!): User
 }
 
 type Mutation {
