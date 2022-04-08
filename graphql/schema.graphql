@@ -1,12 +1,12 @@
 type User {
-  id: Int!
-  email: String!
-  name: String!
-  token: String!
+  id: Int
+  email: String
+  name: String
+  token: String # TODO : divide
 }
 
 type Query {
-  user(id: Int!): User
+  user(id: Int, token: String): User
   users: [User]!
   signIn(email: String!, password: String!): User
 }
