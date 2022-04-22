@@ -8,8 +8,22 @@ const db_users = [
   {
     id: 1,
     email: 'g@g.com',
+    name: 'gooMail',
+    password: '123456',
+    token: '',
+  },
+  {
+    id: 2,
+    email: 'googy',
     name: 'googy',
     password: '123456',
+    token: '',
+  },
+  {
+    id: 3,
+    email: 'gooroo',
+    name: 'gooroo',
+    password: '123456789a',
     token: '',
   },
 ];
@@ -21,6 +35,8 @@ const createToken = ({ id, email, name }) => {
 
 const verifyToken = (token) => {
   try {
+    console.log(token);
+    console.log(secretKey);
     const decoded = jwt.verify(token, secretKey);
     return decoded;
   } catch (err) {
@@ -46,6 +62,7 @@ export const signIn = ({ email, password }) => {
   const users = db_users.filter(
     (user) => user.email === email && user.password === password
   );
+  console.log(email, password);
   if (users.length === 1) {
     const loginUser = users[0];
     const token = createToken(loginUser);
