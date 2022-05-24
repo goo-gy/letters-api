@@ -11,8 +11,6 @@ const createToken = ({ id, email, name }) => {
 
 const verifyToken = (token) => {
   try {
-    console.log(token);
-    console.log(secretKey);
     const decoded = jwt.verify(token, secretKey);
     return decoded;
   } catch (err) {

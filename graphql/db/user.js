@@ -14,7 +14,6 @@ async function signIn({ email, password }) {
   const QUERY_SIGNIN = `SELECT id, email, name FROM user WHERE email='${email}' AND password='${password}'`;
   try {
     const [result, fields] = await poolPromise.query(QUERY_SIGNIN);
-    console.log('re', result);
     if (result.length > 0) {
       return result[0];
     } else {
