@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "db:init": "docker-compose up -d --build"
+    "db:init": "docker-compose up -d --build",
+    "db:migrate": "babel-node migration.js up",
+    "db:rollback": "babel-node migration.js down"
   },
   "repository": {
     "type": "git",
