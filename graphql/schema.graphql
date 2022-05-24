@@ -7,7 +7,7 @@ type User {
 
 type Query {
   user(id: Int, token: String): User
-  users: [User]!
+  users: [User]
   signIn(email: String!, password: String!): User
 }
 

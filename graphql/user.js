@@ -1,66 +1,37 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+// local
+import userDB from './db/user';
+import { createToken, verifyToken } from './auth';
 
-dotenv.config();
-const secretKey = process.env.SECRET_KEY;
-
-const db_users = [
-  {
-    id: 1,
-    email: 'g@g.com',
-    name: 'googy',
-    password: '123456',
-    token: '',
-  },
-];
-
-const createToken = ({ id, email, name }) => {
-  const token = jwt.sign({ id, email, name }, secretKey);
-  return token;
-};
-
-const verifyToken = (token) => {
-  try {
-    const decoded = jwt.verify(token, secretKey);
-    return decoded;
-  } catch (err) {
-    return { error: true };
-  }
-};
-
-export const user = ({ id, token }) => {
+async function user({ id, token }) {
   if (token) {
     const user = verifyToken(token);
     return user;
   } else {
-    const findUser = db_users.filter((user) => user.id === id);
-    if (findUser.length === 1) return findUser[0];
+    const user = await userDB.getUser({ id });
+    return user;
   }
-};
+}
 
-export const users = () => {
-  return db_users;
-};
+async function users() {
+  const users = await userDB.getUsers();
+  return users;
+}
 
-export const signIn = ({ email, password }) => {
-  const users = db_users.filter(
-    (user) => user.email === email && user.password === password
-  );
-  if (users.length === 1) {
-    const loginUser = users[0];
-    const token = createToken(loginUser);
-    return { ...loginUser, token };
+async function signIn({ email, password }) {
+  const user = await userDB.signIn({ email, password });
+  if (user) {
+    const token = createToken(user);
+    return { ...user, token };
+  } else {
+    return null;
   }
-};
+}
 
 // Mutation
 
-export const signUp = ({ email, name, password }) => {
-  db_users.push({
-    id: db_users.length + 1,
-    email,
-    name,
-    password,
-  });
-  return true;
-};
+async function signUp({ email, name, password }) {
+  const success = await userDB.signUp({ email, name, password });
+  return success;
+}
+
+export { signIn, signUp, user, users };
