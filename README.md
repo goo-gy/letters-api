@@ -4,8 +4,9 @@
 
 ```
 SECRET_KEY=[SECRET KEY]
-DB_user=[]
-DB_password=[]
+DB_HOST=[url]
+DB_user=[user]
+DB_password=[password]
 ```
 
 - JWT Scret Key 설정
