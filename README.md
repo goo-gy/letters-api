@@ -3,7 +3,7 @@
 ## env 설정
 
 ```
-SECRET_KEY=[SECRET KEY]
+JWT_SECRET_KEY=[SECRET KEY]
 DB_HOST=[url]
 DB_user=[user]
 DB_password=[password]
