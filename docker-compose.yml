@@ -1,8 +1,14 @@
 version: "3.0"
 services:
-  chat_db:
+  letters_api:
+    container_name: letters_api
+    build: .
+    ports:
+      - "3002:4000"
+
+  letters_db:
     container_name: letters_db
-    build: ./docker
+    build: ./docker_db
     ports:
       - "3306:3306"
     environment:
