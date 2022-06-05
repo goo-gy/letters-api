@@ -1,0 +1,38 @@
+name: CI/CD Docker
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/letters-api
+  VERSION: ${{ github.sha }}
+  NAME: letters-api
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    name: Build
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # github repository에서 checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Env
+        run: |
+          touch .env
+          echo "${{ secrets.ENV_CONTENT }}" >> .env
+          
+      - name: Docker up
+        run: |
+          docker-compose up -d --build
