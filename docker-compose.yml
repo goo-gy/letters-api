@@ -1,11 +1,5 @@
 version: "3.0"
 services:
-  letters_api:
-    container_name: letters_api
-    build: .
-    ports:
-      - "3002:4000"
-
   letters_db:
     container_name: letters_db
     build: ./docker_db
