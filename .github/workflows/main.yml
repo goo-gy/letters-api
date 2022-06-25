@@ -26,5 +26,8 @@ jobs:
       - name: Docker DB up
         run: docker-compose up -d
       
+      - name: Install module
+        run: npm install
+
       - name: Run server
         run: npm run start
