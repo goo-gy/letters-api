@@ -30,4 +30,4 @@ jobs:
         run: npm install
 
       - name: Run server
-        run: npm run start
+        run: (npm run start &)
